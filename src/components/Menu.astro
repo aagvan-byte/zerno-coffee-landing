@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { menu } from '../data/site';
+import menuImg from '../assets/menu.jpg';
 ---
 
 <section id="menu" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
@@ -8,7 +10,15 @@ import { menu } from '../data/site';
     <p class="mt-4 text-lg text-muted">Любой напиток можно сделать на альтернативном молоке — бесплатно.</p>
   </div>
 
-  <div class="mt-12 grid gap-6 md:grid-cols-3">
+  <Image
+    src={menuImg}
+    alt="Капучино с латте-артом и круассан на деревянном столе"
+    widths={[640, 1200, 1600]}
+    sizes="(min-width: 1152px) 1104px, 100vw"
+    class="mt-12 h-56 w-full rounded-3xl object-cover sm:h-72"
+  />
+
+  <div class="mt-6 grid gap-6 md:grid-cols-3">
     {menu.map((group) => (
       <div class="rounded-2xl border border-line bg-surface p-6 sm:p-8">
         <h3 class="font-display text-2xl font-bold text-primary">{group.category}</h3>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import interiorImg from '../assets/interior.jpg';
+
 // Демо-форма: заявка никуда не отправляется, показывается сообщение об успехе.
 // Для реального клиента подключим отправку в Telegram или на почту.
 const today = new Date().toISOString().slice(0, 10);
@@ -14,6 +17,13 @@ const field =
       <p class="mt-4 text-lg leading-relaxed text-muted">
         Оставьте заявку — перезвоним в течение 15 минут и подтвердим бронь. Для компании больше 8 человек лучше позвонить.
       </p>
+      <Image
+        src={interiorImg}
+        alt="Зал кофейни со столиками у больших окон"
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+        class="mt-8 aspect-[3/2] w-full rounded-3xl object-cover"
+      />
     </div>
 
     <form id="booking-form" class="rounded-2xl bg-surface p-6 shadow-xl shadow-primary/5 sm:p-8" novalidate>
