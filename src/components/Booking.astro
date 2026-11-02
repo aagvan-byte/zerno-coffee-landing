@@ -1,0 +1,84 @@
+---
+// Демо-форма: заявка никуда не отправляется, показывается сообщение об успехе.
+// Для реального клиента подключим отправку в Telegram или на почту.
+const today = new Date().toISOString().slice(0, 10);
+
+const field =
+  'mt-2 block w-full rounded-xl border border-line bg-surface px-4 py-3 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20';
+---
+
+<section id="booking" class="bg-cream">
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2">
+    <div>
+      <h2 class="font-display text-3xl font-bold sm:text-4xl">Забронировать стол</h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted">
+        Оставьте заявку — перезвоним в течение 15 минут и подтвердим бронь. Для компании больше 8 человек лучше позвонить.
+      </p>
+    </div>
+
+    <form id="booking-form" class="rounded-2xl bg-surface p-6 shadow-xl shadow-primary/5 sm:p-8" novalidate>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="sm:col-span-2">
+          <span class="font-medium">Имя</span>
+          <input name="name" type="text" required autocomplete="given-name" class={field} />
+        </label>
+        <label class="sm:col-span-2">
+          <span class="font-medium">Телефон</span>
+          <input name="phone" type="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__" class={field} />
+        </label>
+        <label>
+          <span class="font-medium">Дата</span>
+          <input name="date" type="date" required min={today} class={field} />
+        </label>
+        <label>
+          <span class="font-medium">Время</span>
+          <input name="time" type="time" required min="08:00" max="22:00" class={field} />
+        </label>
+        <label class="sm:col-span-2">
+          <span class="font-medium">Количество гостей</span>
+          <select name="guests" class={field}>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option value={n} selected={n === 2}>{n}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <p id="form-error" class="mt-4 hidden text-sm font-medium text-red-700" role="alert">
+        Пожалуйста, заполните все поля.
+      </p>
+
+      <button
+        type="submit"
+        class="mt-6 w-full rounded-full bg-primary px-7 py-3.5 font-semibold text-white transition-colors hover:bg-primary-hover"
+      >
+        Отправить заявку
+      </button>
+      <p class="mt-3 text-center text-xs text-muted">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </form>
+
+    <div id="form-success" class="hidden rounded-2xl bg-surface p-8 text-center shadow-xl shadow-primary/5 md:col-start-2" role="status">
+      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-cream text-primary">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg>
+      </div>
+      <h3 class="mt-4 text-xl font-semibold">Заявка отправлена!</h3>
+      <p class="mt-2 text-muted">Скоро перезвоним, чтобы подтвердить бронь.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('booking-form') as HTMLFormElement;
+  const error = document.getElementById('form-error')!;
+  const success = document.getElementById('form-success')!;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      error.classList.remove('hidden');
+      (form.querySelector(':invalid') as HTMLElement | null)?.focus();
+      return;
+    }
+    error.classList.add('hidden');
+    form.classList.add('hidden');
+    success.classList.remove('hidden');
+  });
+</script>

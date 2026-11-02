@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Menu from '../components/Menu.astro';
+import About from '../components/About.astro';
+import Reviews from '../components/Reviews.astro';
+import Booking from '../components/Booking.astro';
+import Contacts from '../components/Contacts.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Зерно — кофейня и обжарка в Москве"
+  description="Кофе собственной обжарки, домашние десерты и уютное место для работы. Бронируйте стол онлайн."
+>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Features />
+    <Menu />
+    <About />
+    <Reviews />
+    <Booking />
+    <Contacts />
+  </main>
+  <Footer />
+</Layout>

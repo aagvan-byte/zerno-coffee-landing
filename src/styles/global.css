@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Цвета и шрифты проекта. Меняя их здесь, меняем весь сайт. */
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  --color-bg: #fffbf2;
+  --color-surface: #ffffff;
+  --color-cream: #fef3c7;
+  --color-sand: #f5e6c8;
+  --color-line: #eadbc0;
+  --color-espresso: #2b1a10;
+  --color-muted: #6b5444;
+  --color-primary: #92400e;
+  --color-primary-hover: #78350f;
+  --color-accent: #b45309;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-bg font-sans text-espresso antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
