@@ -2,8 +2,9 @@
 
 /* Цвета и шрифты проекта. Меняя их здесь, меняем весь сайт. */
 @theme {
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Manrope", system-ui, sans-serif;
+  /* Сами шрифты подключает Astro (astro.config.mjs), здесь — ссылки на них */
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-manrope);
 
   --color-bg: #fffbf2;
   --color-surface: #ffffff;

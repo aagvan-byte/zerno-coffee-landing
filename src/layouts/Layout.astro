@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 
 interface Props {
@@ -21,13 +22,12 @@ const { title, description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#92400e" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&subset=cyrillic&display=swap"
-    />
+    <!-- Предзагружаем шрифты первого экрана: основной текст и заголовок -->
+    <Font cssVariable="--font-manrope" preload={[{ weight: 400, subset: 'cyrillic' }]} />
+    <!-- Playfair — один файл на все толщины (вариативный шрифт), фильтр по толщине к нему не применяется -->
+    <Font cssVariable="--font-playfair" preload />
   </head>
   <body>
     <a
